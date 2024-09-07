@@ -8,7 +8,7 @@ import random
 import json
 
 
-N: int = 3
+N: int = 10
 sample_ms = 10.0
 on_ms = 500
 
@@ -58,6 +58,10 @@ def scorer(t: list[int | None]) -> None:
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
     data = {}
+    data['min_time'] = min(t_good)
+    data['max_time'] = max(t_good)
+    data['avg_time'] = sum(t_good) / len(t_good)
+    data['score'] = len(t_good) / len(t)
 
     # %% make dynamic filename and write JSON
 
@@ -93,6 +97,7 @@ if __name__ == "__main__":
                 t0 = time.ticks_diff(time.ticks_ms(), tic)
                 led.low()
                 break
+        print(t0)
         t.append(t0)
 
         led.low()
