@@ -69,11 +69,10 @@ def scorer(t: list[int | None]) -> None:
 
     now_str = "-".join(map(str, now[:3])) + "T" + "_".join(map(str, now[3:6]))
     filename = f"score-{now_str}.json"
-
+    
     print("write", filename)
 
     write_json(filename, data)
-
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
