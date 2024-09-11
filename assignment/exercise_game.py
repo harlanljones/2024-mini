@@ -6,7 +6,10 @@ from machine import Pin
 import time
 import random
 import json
+import network
+import urequests
 
+wifi = network.WLAN(network.STA_IF)
 
 N: int = 10
 sample_ms = 10.0
@@ -73,9 +76,31 @@ def scorer(t: list[int | None]) -> None:
     print("write", filename)
 
     write_json(filename, data)
+    
+    if wifi.isconnected():
+        print("Connected to wifi with IP address ", wifi.ifconfig()[0])
+    else:
+        print("Not connected to Wi-Fi")
+        exit()
+    
+    FIRESTORE_URL = "https://firestore.googleapis.com/v1/projects/senior-design-mini-2/databases/(default)/documents/scores"
+    post_data = {
+        "fields": {
+            "average_response_time": {"doubleValue": data['avg_time']},
+            "minimum_response_time": {"doubleValue": data['min_time']},
+            "maximum_response_time": {"doubleValue": data['max_time']}
+        }
+    }
+
+    response = urequests.post(FIRESTORE_URL, json=post_data)
+    print("FIRESTORE response:\n", response.text)
+    response.close()
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
+    
+    wifi.active(True)
+    wifi.connect('BU Guest (unencrypted)')
 
     led = Pin("LED", Pin.OUT)
     button = Pin(16, Pin.IN, Pin.PULL_UP)
