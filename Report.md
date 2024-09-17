@@ -20,7 +20,7 @@ Our data is uploaded via an HTTP request from the Pico in our `exercise_game.py`
 <p align="center">
 Firebase Database
 </p>
-
+<br>
 <p align="center">
 <img src="./images/http_ss.png" width="70%">
 </p>
