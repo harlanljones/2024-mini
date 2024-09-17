@@ -12,5 +12,19 @@ Minimum response time: 183ms
 Maximum response time: 323ms
 
 ### Cloud portion
-Our data is uploaded via an HTTP request from the Pico in our `exercise_game.py` script. The HTTP request url is [here](https://firestore.googleapis.com/v1/projects/senior-design-mini-2/databases/(default)/documents/scores) and the project databse is [here](https://console.firebase.google.com/u/1/project/senior-design-mini-2/firestore/databases/-default-/data)
+Our data is uploaded via an HTTP request from the Pico in our `exercise_game.py` script to a Firebase project. The HTTP request url is [here](https://firestore.googleapis.com/v1/projects/senior-design-mini-2/databases/(default)/documents/scores) . Below are screenshots of the cloud storage.
+
+<p align="center">
+<img src="./images/firebase_ss.png" width="50%">
+</p>
+<p align="center">
+Firebase Database
+</p>
+
+<p align="center">
+<img src="./images/http_ss.png" width="50%">
+</p>
+<p align="center">
+HTTP URL
+</p>
 
